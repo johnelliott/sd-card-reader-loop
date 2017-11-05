@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # this file is will install sd-card-reader-loop on a system
 
@@ -18,3 +18,10 @@ sudo mkdir -p ${CARD_MOUNT_POINT}
 echo "$USER cms051=/usr/bin/tee /sys/class/leds/*/delay_on" | sudo tee -a /etc/sudoers
 # give the user permission to unmount
 sudo echo "$USER cms051=/bin/umount ${CARD_MOUNT_POINT}" | sudo tee -a /etc/sudoers
+
+mkdir -p ~/.config/systemd/user
+ln -s `pwd`*service ~/.config/systemd/user
+
+# warning: this might copy photos, post to instragram, and turn of your computer
+# if that happens, remove a media device and this command with disable:
+systemctl --user enable complete-loop.service
