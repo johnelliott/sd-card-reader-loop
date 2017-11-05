@@ -1,0 +1,8 @@
+[Unit]
+Description=Complete a run and shutdown
+Requires=unmount-media-card.service
+After=unmount-media-card.service
+
+[Service]
+Type=oneshot
+Exec=/bin/systemctl poweroff

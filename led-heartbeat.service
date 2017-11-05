@@ -1,0 +1,10 @@
+[Unit]
+Description=Set ACT LED to heartbeat
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "echo 1 | sudo tee /sys/class/leds/lid0/trigger"
+# We don't set RemainAfterExit because it indeed needs to get run multiple times
+
+[Install]
+RequiredBy=unmount-media-card.service

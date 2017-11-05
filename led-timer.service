@@ -1,0 +1,8 @@
+[Unit]
+Description=Set ACT LED to timer
+Requires=led-interval.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "echo timer | sudo tee /sys/class/leds/lid0/trigger"
+RemainAfterExit=yes

@@ -1,0 +1,14 @@
+[Unit]
+Description=Unmount media card
+# Run after rated photos are posted to instagram
+Requires=rated-instagram.service
+After=rated-instagram.service
+# Run before led-heartbeat (so heartbeat after we unmount)
+Requires=led-heartbeat.service
+Before=led-heartbeat.service
+
+[Service]
+Type=oneshot
+Exec=/bin/umount ${CARD_MOUNT_POINT}
+EnvironmentFile=/opt/sd-card-reader-loop/.envrc
+RemainAfterExit=yes

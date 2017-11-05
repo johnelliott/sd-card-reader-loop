@@ -1,0 +1,7 @@
+[Unit]
+Description=Check that needed programs are installed
+
+[Service]
+Type=oneshot
+ExecStart=/opt/sd-card-reader-loop/install-check.sh
+RemainAfterExit=yes

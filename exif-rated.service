@@ -1,0 +1,10 @@
+[Unit]
+Description=Run the exif rated tool to put images in rated directory
+Requires=install-check.service
+After=install-check.service
+
+[Service]
+Type=oneshot
+Exec=$exiftool -r -o ${RATED_DIR}/ -ext JPG -Rating -if '$Rating ge 1' ${PHOTOS_DIR}
+EnvironmentFile=/opt/sd-card-reader-loop/.envrc
+RemainAfterExit=yes

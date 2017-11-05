@@ -1,0 +1,10 @@
+[Unit]
+Description=Wait for the USB Storage to appear
+
+[Service]
+Type=oneshot
+Exec=/bin/sh -c 'ls /dev/* | grep $CARD_DEV | cut -d"/" -f3'
+EnvironmentFile=/opt/sd-card-reader-loop/.envrc
+# this service will attempt to run again
+Restart=on-failure
+RemainAfterExit=yes

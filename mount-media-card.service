@@ -1,0 +1,10 @@
+[Unit]
+Description=Normally we'd use a systemd .mount but this is a direct port for now
+Requires=wait-for-sd-card-reader.service
+After=wait-for-sd-card-reader.service
+
+[Service]
+Type=oneshot
+Exec=/bin/mount ${CARD_DEV} ${CARD_MOUNT_POINT}
+EnvironmentFile=/opt/sd-card-reader-loop/.envrc
+RemainAfterExit=yes

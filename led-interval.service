@@ -1,0 +1,8 @@
+[Unit]
+Description=Set ACT LED to timer
+Also=led-interval.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "echo ${LED_MS} | sudo tee /sys/class/leds/lid0/delay_on"
+RemainAfterExit=yes

@@ -1,0 +1,11 @@
+[Unit]
+Description=Post rated images from the SD card to instagram stories
+Requires=exif-rated.service
+After=exif-rated.service
+
+[Service]
+Type=oneshot
+Exec=/usr/bin/env node ${insta} "$RATED_DIR/*.JPG"
+Environment=DEBUG=ig*
+EnvironmentFile=/opt/sd-card-reader-loop/.envrc
+RemainAfterExit=yes
