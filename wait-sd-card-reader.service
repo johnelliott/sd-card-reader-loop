@@ -2,9 +2,10 @@
 Description=Wait for the SD-card-reader
 
 [Service]
-Type=oneshot
+Type=simple
 # lsusb will fail if this device is not found
-Exec=/usr/bin/lsusb -d 8564:4000
+ExecStart=/bin/sh -c '/usr/bin/test -n "$(/usr/bin/lsusb -d 8564:4000)"'
 # this service will attempt to run again
 Restart=on-failure
-RemainAfterExit=yes
+RestartSec=1
+RemainAfterExit=no
