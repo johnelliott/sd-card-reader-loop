@@ -10,14 +10,14 @@
 source .envrc
 
 # give the user permission to change LED trigger
-echo "$USER cms051=/usr/bin/tee /sys/class/leds/*/trigger" | sudo tee -a /etc/sudoers
+echo "$USER ALL=(root) NOPASSWD: /usr/bin/tee /sys/class/leds/*/trigger" | sudo tee -a /etc/sudoers
 # give the user permission to mount the card
-sudo echo "$USER cms051=/bin/mount ${CARD_DEV} ${CARD_MOUNT_POINT}" | sudo tee -a /etc/sudoers
+sudo echo "$USER ALL=(root) NOPASSWD: /bin/mount ${CARD_DEV} ${CARD_MOUNT_POINT}" | sudo tee -a /etc/sudoers
 sudo mkdir -p ${CARD_MOUNT_POINT}
 # give the user permission to set led blink delay
-echo "$USER cms051=/usr/bin/tee /sys/class/leds/*/delay_on" | sudo tee -a /etc/sudoers
+echo "$USER ALL=(root) NOPASSWD: /usr/bin/tee /sys/class/leds/*/delay_on" | sudo tee -a /etc/sudoers
 # give the user permission to unmount
-sudo echo "$USER cms051=/bin/umount ${CARD_MOUNT_POINT}" | sudo tee -a /etc/sudoers
+sudo echo "$USER ALL=(root) NOPASSWD: /bin/umount ${CARD_MOUNT_POINT}" | sudo tee -a /etc/sudoers
 
 mkdir -p ~/.config/systemd/user
 ln -s `pwd`*service ~/.config/systemd/user
